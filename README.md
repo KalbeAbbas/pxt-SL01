@@ -22,7 +22,7 @@ This block must be placed before any other SL01 related blocks.
 Instructs the Sensor to perform a LUX measurement.
 
 ```sig
-SL01.getUVB()
+SL01.getLUX()
 ```
 
 ### SL01 UVA (mW/cm^2)
