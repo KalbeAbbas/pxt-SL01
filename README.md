@@ -1,4 +1,4 @@
-# pxtSL01
+# pxt-SL01
 
 This is the MakeCode Package for ☒CHIP SL01
 
@@ -33,5 +33,5 @@ SL01.getUVA()
 * for PXT/microbit
 
 ```package
-SL01=github:xinabox/pxtSL01
+SL01=github:xinabox/pxt-SL01
 ```
