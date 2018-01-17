@@ -1,6 +1,10 @@
-# pxt-SL01
+# ☒SL01
 
 This is the MakeCode Package for ☒CHIP SL01
+
+## Usage
+
+To use this package, go to https://pxt.microbit.org, click Add package and paste the following link in the search bar - https://github.com/xinabox/pxt-SL01.
 
 ## Blocks
 ### Initialize SL01
