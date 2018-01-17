@@ -1,7 +1,7 @@
 {
     "name": "SL01",
     "version": "0.0.1",
-    "description": "",
+    "description": "MakeCode package for the ☒SL01",
     "license": "MIT",
     "dependencies": {
         "core": "*",
@@ -14,5 +14,5 @@
     "testFiles": [
         "test.ts"
     ],
-    "public": false
+    "public": true
 }
