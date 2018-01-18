@@ -82,6 +82,7 @@ namespace SL01 {
 		WriteRegVEML(VEML6075_REG_CONF, VEML6075_CONF_IT_100, 0x00);
 		WriteRegTSL((TSL4531_WRITE_CMD|TSL4531_REG_CONTROL), TSL4531_CONF_START);
 		WriteRegTSL((TSL4531_WRITE_CMD|TSL4531_REG_CONF), (TSL4531_CONF_IT_100|TSL4531_CONF_PSAVE));
+		getLUX();
 	}
 
 	/**
@@ -90,7 +91,7 @@ namespace SL01 {
   	//% blockId="Lux" block="Visible Light (Lux)"
   	//% blockGap=1 weight=90
   	//% Lux.min=4 Lux.max=220000	
-	export function getLux(): number {
+	export function getLUX(): number {
 		let byteH = ReadRegTSL(0x85);
 		let byteL = ReadRegTSL(0x84);
 		let lux = (4*((byteH << 8) + byteL));
