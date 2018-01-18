@@ -41,14 +41,14 @@ namespace SL01 {
 	const TSL4531_CONF_IT_400 =	0x00
 	const TSL4531_CONF_PSAVE = 0x02
 	
-	function WriteRegTSL(addr: number, cmd: number) {
+	function writeTSL(addr: number, cmd: number) {
 		let buf: Buffer = pins.createBuffer(2);
 		buf[0] = addr;
 		buf[1] = cmd;
 		pins.i2cWriteBuffer(0x29, buf, false);
 	}
 	
-	function ReadRegTSL(addr: number): number {
+	function readTSL(addr: number): number {
 		let buf: Buffer = pins.createBuffer(1);
 		buf[0] = addr;
 		pins.i2cWriteBuffer(0x29, buf, false);
@@ -56,7 +56,7 @@ namespace SL01 {
 		return buf[0];
 	}
 
-  	function WriteRegVEML(addr: number, cmd_L: number, cmd_H: number) {
+  	function writeVEML(addr: number, cmd_L: number, cmd_H: number) {
 		let buf: Buffer = pins.createBuffer(3);
 		buf[0] = addr;
 		buf[1] = cmd_L;
@@ -64,12 +64,13 @@ namespace SL01 {
 		pins.i2cWriteBuffer(0x10, buf, false);
 	}
 
-	function ReadRegVEML(addr: number): number {
+	function readVEML(addr: number): number {
 	    let buf: Buffer = pins.createBuffer(2);
 	    buf[0] = addr;
+	    buf[1] = 0x00;
 	    pins.i2cWriteBuffer(0x10, buf, false);
 	    buf = pins.i2cReadBuffer(0x10, 2, false);
-	    let result = ((buf[0] << 8)+ buf[1]);
+	    let result = ((buf[0] << 8)|buf[1]);
 	    return result;
 	}	
 	
@@ -79,9 +80,9 @@ namespace SL01 {
 	//% blockId="Init" block="Initialize SL01"
   	//% blockGap=1 weight=90
 	export function init(): void {
-		WriteRegVEML(VEML6075_REG_CONF, VEML6075_CONF_IT_100, 0x00);
-		WriteRegTSL((TSL4531_WRITE_CMD|TSL4531_REG_CONTROL), TSL4531_CONF_START);
-		WriteRegTSL((TSL4531_WRITE_CMD|TSL4531_REG_CONF), (TSL4531_CONF_IT_100|TSL4531_CONF_PSAVE));
+		writeVEML(VEML6075_REG_CONF, VEML6075_CONF_IT_100, 0x00);
+		writeTSL((TSL4531_WRITE_CMD|TSL4531_REG_CONTROL), TSL4531_CONF_START);
+		writeTSL((TSL4531_WRITE_CMD|TSL4531_REG_CONF), (TSL4531_CONF_IT_100|TSL4531_CONF_PSAVE));
 		getLUX();
 	}
 
@@ -92,9 +93,9 @@ namespace SL01 {
   	//% blockGap=1 weight=90
   	//% Lux.min=4 Lux.max=220000	
 	export function getLUX(): number {
-		let byteH = ReadRegTSL(0x85);
-		let byteL = ReadRegTSL(0x84);
-		let lux = (4*((byteH << 8) + byteL));
+		let byteH = readTSL(0x85);
+		let byteL = readTSL(0x84);
+		let lux = (4*((byteH << 8) | byteL));
 		return lux;
 	}
 	
@@ -105,7 +106,7 @@ namespace SL01 {
 	//% blockGap=1 weight=90
 	export function getUVA(): number {
 	    let UVAsensitivity = 46/100;
-	    let rawUVA = ReadRegVEML(VEML6075_REG_UVA);
+	    let rawUVA = readVEML(VEML6075_REG_UVA);
 	    let uva = (rawUVA/UVAsensitivity);
 	    return uva;
 	}
