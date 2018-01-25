@@ -1,4 +1,4 @@
-# ☒SL01
+# ☒CHIP SL01
 
 This is the MakeCode Package for ☒CHIP SL01
 
