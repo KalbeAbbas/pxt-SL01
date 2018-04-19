@@ -73,7 +73,6 @@ namespace SL01 {
     /* reads raw uva data and calculates uva */
     function getUVAdata(): number {
         let rawUVA = readVEML(VEML6075_REG_UVA);
-        //let uva = rawUVA;
         let UVcomp1 = readVEML(VEML6075_REG_UVCOMP1);
         let UVcomp2 = readVEML(VEML6075_REG_UVCOMP2);
         let uva = rawUVA - ((VEML6075_UVA_VIS_COEFF * UVcomp1) - (VEML6075_UVA_IR_COEFF * UVcomp2));
@@ -83,7 +82,6 @@ namespace SL01 {
     /* reads raw uvb data and calculates uvb */
     function getUVBdata(): number {
         let rawUVB = readVEML(VEML6075_REG_UVB);
-        //let uvb = rawUVB;
         let UVcomp1 = readVEML(VEML6075_REG_UVCOMP1);
         let UVcomp2 = readVEML(VEML6075_REG_UVCOMP2);
         let uvb = rawUVB - ((VEML6075_UVB_VIS_COEFF * UVcomp1) - (VEML6075_UVB_IR_COEFF * UVcomp2));
@@ -103,7 +101,7 @@ namespace SL01 {
 	/**
  	* SL01 Init 
  	*/
-    //% blockId="Init" block="Initialize SL01"
+    //% blockId="Init" block="Init SL01"
     //% blockGap=1 weight=90
     export function init(): void {
         writeVEML(VEML6075_REG_CONF, VEML6075_CONF_IT_100, 0x00);
