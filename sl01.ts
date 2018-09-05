@@ -1,7 +1,7 @@
 /**
  * SL01 Light Sensor
  */
-//% weight=10 color=#9F79EE icon="\uf0eb" block="SL01"
+//% weight=99 color=#000000 icon="\uf0eb" block="SL01"
 namespace SL01 {
     const VEML6075_REG_CONF = 0x00
     const VEML6075_REG_UVA = 0x07
@@ -102,7 +102,7 @@ namespace SL01 {
  	* SL01 Init 
  	*/
     //% blockId="Init" block="Init SL01"
-    //% blockGap=1 weight=90
+    //% weight=90
     export function init(): void {
         writeVEML(VEML6075_REG_CONF, VEML6075_CONF_IT_100, 0x00);
         writeTSL((TSL4531_WRITE_CMD | TSL4531_REG_CONTROL), TSL4531_CONF_START);
@@ -114,7 +114,7 @@ namespace SL01 {
   	* SL01 Ambient Light (Lux)
   	*/
     //% blockId="Lux" block="Visible Light (Lux)"
-    //% blockGap=1 weight=90
+    //% weight=90
     //% Lux.min=4 Lux.max=220000	
     export function getLUX(): number {
         let byteH = readTSL(0x85);
@@ -127,7 +127,7 @@ namespace SL01 {
 	* SL01 UVA (mW/cm^2)
 	*/
     //% blockId="UVA" block="UVA (mW/cm^2)"
-    //% blockGap=1 weight=90
+    //% weight=90
     export function getUVA(): number {
         return getUVAdata();
     }
@@ -135,7 +135,7 @@ namespace SL01 {
     * SL01 UVB (mW/cm^2)
     */
     //% blockId="UVB" block="UVB (mW/cm^2)"
-    //% blockGap=1 weight=90
+    //% weight=90
     export function getUVB(): number {
         return getUVBdata();
     }
@@ -143,7 +143,7 @@ namespace SL01 {
     * SL01 UVI (mW/cm^2)
     */
     //% blockId="UVIndex" block="UVIndex (mW/cm^2)"
-    //% blockGap=1 weight=90
+    //% weight=90
     export function getUVIndex(): number {
         return getUVIdata();
     }
