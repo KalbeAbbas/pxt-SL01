@@ -1,7 +1,7 @@
 /**
  * SL01 Light Sensor
  */
-//% weight=10 color=#9F79EE icon="\uf108" block="SL01"
+//% weight=10 color=#9F79EE icon="\uf0eb" block="SL01"
 namespace SL01 {
     const VEML6075_REG_CONF = 0x00
     const VEML6075_REG_UVA = 0x07
