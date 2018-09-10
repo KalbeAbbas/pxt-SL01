@@ -113,7 +113,7 @@ namespace SL01 {
 	/**
   	* SL01 Ambient Light (Lux)
   	*/
-    //% blockId="Lux" block="Visible Light (Lux)"
+    //% blockId="Lux" block="get Visible Light (Lux)"
     //% weight=90
     //% Lux.min=4 Lux.max=220000	
     export function getLUX(): number {
@@ -126,7 +126,7 @@ namespace SL01 {
 	/**
 	* SL01 UVA (mW/cm^2)
 	*/
-    //% blockId="UVA" block="UVA (mW/cm^2)"
+    //% blockId="UVA" block="get UVA (mW/cm^2)"
     //% weight=90
     export function getUVA(): number {
         return getUVAdata();
@@ -134,7 +134,7 @@ namespace SL01 {
     /**
     * SL01 UVB (mW/cm^2)
     */
-    //% blockId="UVB" block="UVB (mW/cm^2)"
+    //% blockId="UVB" block="get UVB (mW/cm^2)"
     //% weight=90
     export function getUVB(): number {
         return getUVBdata();
@@ -142,7 +142,7 @@ namespace SL01 {
     /**
     * SL01 UVI (mW/cm^2)
     */
-    //% blockId="UVIndex" block="UVIndex (mW/cm^2)"
+    //% blockId="UVIndex" block="get UVIndex (mW/cm^2)"
     //% weight=90
     export function getUVIndex(): number {
         return getUVIdata();
