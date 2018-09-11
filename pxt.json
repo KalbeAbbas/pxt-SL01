@@ -4,8 +4,7 @@
     "description": "MakeCode package for the ☒SL01",
     "license": "MIT",
     "dependencies": {
-        "core": "*",
-        "radio": "*"
+        "core": "*"
     },
     "files": [
         "README.md",
