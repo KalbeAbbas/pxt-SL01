@@ -1,6 +1,6 @@
-# ☒CHIP SL01
+# xChip SL01
 
-This is the MakeCode Package for ☒CHIP SL01
+This is the MakeCode Package for xChip SL01
 
 ## Usage
 
