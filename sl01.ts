@@ -134,7 +134,7 @@ namespace SL01 {
         let byteL = readTSL(0x84);
         let lux = (4 * ((byteH << 8) | byteL));
         if (u == SL01_L.LX) return lux;
-        else return lux / 10.764;
+        else return fix(lux / 10.764);
     }
 
 
@@ -146,7 +146,7 @@ namespace SL01 {
     //% group="Variables"
     //% weight=90 blockGap=8
     export function getUVA(): number {
-        return getUVAdata();
+        return fix(getUVAdata());
     }
     /**
     * Ultraviolet B (mW/cm²)
@@ -156,7 +156,7 @@ namespace SL01 {
     //% group="Variables"
     //% weight=90 blockGap=8
     export function getUVB(): number {
-        return getUVBdata();
+        return fix(getUVBdata());
     }
     /**
     * The ultraviolet index
@@ -166,6 +166,10 @@ namespace SL01 {
     //% group="Variables"
     //% weight=90 blockGap=8
     export function getUVIndex(): number {
-        return getUVIdata();
+        return fix(getUVIdata());
+    }
+
+    function fix(x: number) {
+        return Math.round(x * 100) / 100
     }
 }
