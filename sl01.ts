@@ -107,9 +107,9 @@ namespace SL01 {
     }
 
 	/**
- 	* SL01 Init 
+ 	* start SL01 
  	*/
-    //% blockId="Init" block="initialize SL01"
+    //% blockId="Init" block="start SL01"
     //% group="On start"
     //% weight=90 blockGap=8
     export function init(): void {
