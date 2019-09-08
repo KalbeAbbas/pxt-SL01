@@ -1,5 +1,5 @@
 {
-    "name": "pxt-SL01",
+    "name": "SL01",
     "version": "1.0.6",
     "description": "XinaBox SL01 light sensor: Illuminance and Ultraviolet light",
     "license": "MIT",
