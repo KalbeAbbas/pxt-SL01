@@ -111,7 +111,7 @@ namespace SL01 {
  	*/
     //% blockId="Init" block="initialize SL01"
     //% group="On start"
-    //% weight=90
+    //% weight=90 blockGap=8
     export function init(): void {
         writeVEML(VEML6075_REG_CONF, VEML6075_CONF_IT_100, 0x00);
         writeTSL((TSL4531_WRITE_CMD | TSL4531_REG_CONTROL), TSL4531_CONF_START);
@@ -144,7 +144,7 @@ namespace SL01 {
 	*/
     //% blockId="UVA" block="SL01 Ultraviolet A (mW/cm²)"
     //% group="Variables"
-    //% weight=90
+    //% weight=90 blockGap=8
     export function getUVA(): number {
         return getUVAdata();
     }
@@ -154,7 +154,7 @@ namespace SL01 {
     */
     //% blockId="UVB" block="SL01 Ultraviolet B (mW/cm²)"
     //% group="Variables"
-    //% weight=90
+    //% weight=90 blockGap=8
     export function getUVB(): number {
         return getUVBdata();
     }
@@ -164,7 +164,7 @@ namespace SL01 {
     */
     //% blockId="UVIndex" block="SL01 Ultraviolet index"
     //% group="Variables"
-    //% weight=90
+    //% weight=90 blockGap=8
     export function getUVIndex(): number {
         return getUVIdata();
     }

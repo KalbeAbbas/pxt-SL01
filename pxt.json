@@ -1,7 +1,7 @@
 {
     "name": "pxt-SL01",
-    "version": "0.0.5",
-    "description": "MakeCode package for the SL01",
+    "version": "1.0.5",
+    "description": "XinaBox SL01 light sensor: Illuminance and Ultraviolet light",
     "license": "MIT",
     "dependencies": {
         "core": "*"
