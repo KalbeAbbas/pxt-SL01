@@ -1,7 +1,15 @@
+enum SL01_L {
+    //% block="lx"
+    LX = 0,
+    //% block="fc"
+    FC = 1
+}
+
 /**
  * SL01 Light Sensor
  */
-//% weight=99 color=#000000 icon="\uf0eb" block="SL01"
+//% color=#444444 icon="\uf0eb" block="SL01"
+//% groups=['On start', 'Variables', 'Optional']
 namespace SL01 {
     const VEML6075_REG_CONF = 0x00
     const VEML6075_REG_UVA = 0x07
@@ -102,47 +110,60 @@ namespace SL01 {
  	* SL01 Init 
  	*/
     //% blockId="Init" block="initialize SL01"
+    //% group="On start"
     //% weight=90
     export function init(): void {
         writeVEML(VEML6075_REG_CONF, VEML6075_CONF_IT_100, 0x00);
         writeTSL((TSL4531_WRITE_CMD | TSL4531_REG_CONTROL), TSL4531_CONF_START);
         writeTSL((TSL4531_WRITE_CMD | TSL4531_REG_CONF), (TSL4531_CONF_IT_100 | TSL4531_CONF_PSAVE));
-        getLUX();
+        getLUX(SL01_L.LX);
+        getUVIdata();
     }
 
 	/**
-  	* SL01 Ambient Light (Lux)
+  	* Illuminance in lux or foot-candle
+    * https://en.wikipedia.org/wiki/Illuminance
+    * @param u the illuminance unit
   	*/
-    //% blockId="Lux" block="visible light (Lux)"
-    //% weight=90
+    //% blockId="Lux" block="SL01 illuminance %u"
+    //% group="Variables"
+    //% weight=90 blockGap=8
     //% Lux.min=4 Lux.max=220000	
-    export function getLUX(): number {
+    export function getLUX(u: SL01_L): number {
         let byteH = readTSL(0x85);
         let byteL = readTSL(0x84);
         let lux = (4 * ((byteH << 8) | byteL));
-        return lux;
+        if (u == SL01_L.LX) return lux;
+        else return lux / 10.764;
     }
 
+
 	/**
-	* SL01 UVA (mW/cm^2)
+	* Ultraviolet A (mW/cm²)
+    * https://en.wikipedia.org/wiki/Ultraviolet
 	*/
-    //% blockId="UVA" block="UVA (mW/cm^2)"
+    //% blockId="UVA" block="SL01 Ultraviolet A (mW/cm²)"
+    //% group="Variables"
     //% weight=90
     export function getUVA(): number {
         return getUVAdata();
     }
     /**
-    * SL01 UVB (mW/cm^2)
+    * Ultraviolet B (mW/cm²)
+    * https://en.wikipedia.org/wiki/Ultraviolet
     */
-    //% blockId="UVB" block="UVB (mW/cm^2)"
+    //% blockId="UVB" block="SL01 Ultraviolet B (mW/cm²)"
+    //% group="Variables"
     //% weight=90
     export function getUVB(): number {
         return getUVBdata();
     }
     /**
-    * SL01 UVI (mW/cm^2)
+    * The ultraviolet index
+    * https://en.wikipedia.org/wiki/Ultraviolet_index
     */
-    //% blockId="UVIndex" block="UV index (mW/cm^2)"
+    //% blockId="UVIndex" block="SL01 Ultraviolet index"
+    //% group="Variables"
     //% weight=90
     export function getUVIndex(): number {
         return getUVIdata();
