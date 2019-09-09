@@ -11,6 +11,7 @@ enum SL01_L {
 //% color=#444444 icon="\uf0eb" block="SL01"
 //% groups=['On start', 'Variables', 'Optional']
 namespace SL01 {
+    let initialized = false
     const VEML6075_REG_CONF = 0x00
     const VEML6075_REG_UVA = 0x07
     const VEML6075_REG_UVB = 0x09
@@ -109,10 +110,12 @@ namespace SL01 {
 	/**
  	* start SL01 
  	*/
-    //% blockId="Init" block="start SL01"
-    //% group="On start"
-    //% weight=90 blockGap=8
-    export function init(): void {
+    // % blockId="Init" block="start SL01"
+    // % group="On start"
+    // % weight=90 blockGap=8
+     function init(): void {
+        if (initialized) return
+        initialized = true
         writeVEML(VEML6075_REG_CONF, VEML6075_CONF_IT_100, 0x00);
         writeTSL((TSL4531_WRITE_CMD | TSL4531_REG_CONTROL), TSL4531_CONF_START);
         writeTSL((TSL4531_WRITE_CMD | TSL4531_REG_CONF), (TSL4531_CONF_IT_100 | TSL4531_CONF_PSAVE));
@@ -130,6 +133,7 @@ namespace SL01 {
     //% weight=90 blockGap=8
     //% Lux.min=4 Lux.max=220000	
     export function getLUX(u: SL01_L): number {
+        init()
         let byteH = readTSL(0x85);
         let byteL = readTSL(0x84);
         let lux = (4 * ((byteH << 8) | byteL));
@@ -146,6 +150,7 @@ namespace SL01 {
     //% group="Variables"
     //% weight=90 blockGap=8
     export function getUVA(): number {
+        init()
         return fix(getUVAdata());
     }
     /**
@@ -156,6 +161,7 @@ namespace SL01 {
     //% group="Variables"
     //% weight=90 blockGap=8
     export function getUVB(): number {
+        init()
         return fix(getUVBdata());
     }
     /**
@@ -166,6 +172,7 @@ namespace SL01 {
     //% group="Variables"
     //% weight=90 blockGap=8
     export function getUVIndex(): number {
+        init()
         return fix(getUVIdata());
     }
 
