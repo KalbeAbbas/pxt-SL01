@@ -1,6 +1,6 @@
 {
     "name": "SL01",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "XinaBox SL01 light sensor: Illuminance and Ultraviolet light",
     "license": "MIT",
     "dependencies": {
