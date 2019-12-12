@@ -35,6 +35,7 @@ SL01.getUVA()
 ## Supported targets
 
 * for PXT/microbit
+* for PXT/CC03
 
 ```package
 SL01=github:xinabox/pxt-SL01
