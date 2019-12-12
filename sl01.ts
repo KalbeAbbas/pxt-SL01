@@ -245,20 +245,6 @@ namespace SL01 {
         return Math.round(x * 100) / 100
     }
 
-    function readIR(): number {
-        return getUInt16LE(0x24)
-    }
-
-    function readProximity(unit: DISTANCE): number {
-
-        if (unit == DISTANCE.CENTIMETER) {
-            return getUInt16LE(0x26)
-        } else if (unit == DISTANCE.METER) {
-            return (getUInt16LE(0x26) / 100)
-        }
-        return 0
-    }
-
     let v1 = 0
     let v2 = 0
     function checkID(): void {
@@ -267,7 +253,7 @@ namespace SL01 {
     }
 
     checkID();
-    if(v2) begin();
+    if (v2) begin();
 
 	/**
 	* Ultraviolet A (mW/cm²)
@@ -296,7 +282,7 @@ namespace SL01 {
             return fix(getUVBdata())
         } else return 0;
     }
-    
+
     /**
     * The ultraviolet index
     * https://en.wikipedia.org/wiki/Ultraviolet_index
@@ -309,7 +295,7 @@ namespace SL01 {
         if (v1) {
             init();
             val = fix(getUVIdata());
-        } 
+        }
 
         if (v2) {
             val = (getUInt16LE(0x2C) / 100);
@@ -327,14 +313,14 @@ namespace SL01 {
     //% weight=90 blockGap=8
     //% Lux.min=4 Lux.max=220000
     export function getLUX(u: SL01_L): number {
-        let val  =0;
+        let val = 0;
         if (v1) {
             init()
             let byteH = readTSL(0x85);
             let byteL = readTSL(0x84);
             let lux = (4 * ((byteH << 8) | byteL));
             if (u == SL01_L.LX) val = lux;
-            else val =(lux / 10.764);
+            else val = (lux / 10.764);
         }
 
         if (v2) {
@@ -344,6 +330,39 @@ namespace SL01 {
                 val = (getUInt16LE(0x22) / 10.764)
             }
         }
-        return val;    
+        return val;
+    }
+
+    /**
+     *  Proximity
+    */
+    //% block="SL01 proximity %u"
+    //% weight=74 blockGap=8
+    //% group="Variables"
+    export function readProximity(u: DISTANCE): number {
+        let val = 0
+        if (v2) {
+            ;
+            if (u == DISTANCE.CENTIMETER) {
+                val = getUInt16LE(0x26)
+            } else if (u == DISTANCE.METER) {
+                val = (getUInt16LE(0x26) / 100)
+            }
+        }
+        return val
+    }
+
+    /**
+     *  Infra Red Intensity
+    */
+    //% block="SL01 infrared intensity"
+    //% weight=74 blockGap=8
+    //% group="Variables"
+    export function readIR(): number {
+        let val = 0
+        if (v2) {
+            val = getUInt16LE(0x24)
+        }
+        return val;
     }
 }
