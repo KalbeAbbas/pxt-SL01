@@ -4,8 +4,7 @@
     "description": "XinaBox SL01 Light sensor: Illuminance and Ultraviolet light",
     "license": "MIT",
     "dependencies": {
-        "core": "*",
-        "xinabox-cs11": "*"
+        "core": "*"
     },
     "files": [
         "README.md",
