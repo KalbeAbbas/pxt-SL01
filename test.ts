@@ -1,2 +1,4 @@
+/*
 basic.forever(function () {
 })
+*/
