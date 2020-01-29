@@ -1,10 +1,11 @@
 {
     "name": "SL01",
     "version": "1.0.12",
-    "description": "XinaBox SL01 light sensor: Illuminance and Ultraviolet light",
+    "description": "XinaBox SL01 Light sensor: Illuminance and Ultraviolet light",
     "license": "MIT",
     "dependencies": {
-        "core": "*"
+        "core": "*",
+        "xinabox-cs11": "*"
     },
     "files": [
         "README.md",
@@ -14,5 +15,5 @@
         "test.ts"
     ],
     "public": true,
-    "preferredEditor": "tsprj"
+	"preferredEditor": "blocksprj"
 }
