@@ -45,4 +45,4 @@ SL01.getUVA()
 ```package
 SL01=github:xinabox/pxt-SL01
 ```
-![Developer](https://img.shields.io/badge/Developer--green) 
+![Developer](https://img.shields.io/badge/Developer-lb-green) 
