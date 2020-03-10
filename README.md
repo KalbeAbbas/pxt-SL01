@@ -3,6 +3,8 @@
 ![Maintained](https://img.shields.io/maintenance/yes/2020) 
 ![Build status badge](https://github.com/xinabox/pxt-SL01/workflows/maker/badge.svg)
 ![Build status badge](https://github.com/xinabox/pxt-SL01/workflows/microbit/badge.svg)
+![Developer](https://img.shields.io/badge/Developer-lb-green)
+
 # xChip SL01
 
 This is the MakeCode Package for xChip SL01
@@ -45,4 +47,3 @@ SL01.getUVA()
 ```package
 SL01=github:xinabox/pxt-SL01
 ```
-![Developer](https://img.shields.io/badge/Developer-lb-green) 
