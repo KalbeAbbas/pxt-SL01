@@ -262,7 +262,7 @@ namespace SL01 {
     //% blockId="UVA" block="SL01 Ultraviolet A (mW/cm²)"
     //% group="Variables"
     //% weight=90 blockGap=8
-    export function getUVA(): number {
+    function getUVA(): number {
         if (v1) {
             init()
             return fix(getUVAdata());
@@ -276,7 +276,7 @@ namespace SL01 {
     //% blockId="UVB" block="SL01 Ultraviolet B (mW/cm²)"
     //% group="Variables"
     //% weight=90 blockGap=8
-    export function getUVB(): number {
+    function getUVB(): number {
         if (v1) {
             init()
             return fix(getUVBdata())
